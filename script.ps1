@@ -80,7 +80,6 @@ $To = "<my email address>"
 $Attachment = "$zipPath"
 
 $BuildAgentInfo = "<strong> Build Agent Info </strong><br>" + "Powershell Version: " + $PSVersionTable.PSVersion + "<br>" + ".net Version: " + $dotNetVerInfo + "<br>"
-$DebugInfo = "Request Error: " + $RequestErrorMessage + "<br>" + "Body Error: " + $BodyErrorMessage + "<br>"
 $Email = "<!DOCTYPE html><html><body>" + $Start + "<br>" + $Summary + "<br>" + $FirstResultsTable + "<br>" + $FeatureSummaryContent + "<br>" + $BuildAgentInfo + "</body></html>"
 
 $smtpServer = "<Ip Address>"
@@ -173,9 +172,9 @@ $webClient.Headers.Add("Content-Type", "application/x-www-form-urlencoded")
 
 # Build parameters as query string
 $NVC = New-Object System.Collections.Specialized.NameValueCollection
-$NVC.Add("content",$content)
-$NVC.Add("filetype","html")
-$NVC.Add("title","TestResults")
+$NVC.Add("content", $content)
+$NVC.Add("filetype", "html")
+$NVC.Add("title", "TestResults")
 $NVC.Add("initial_comment", "Test Results")
 $NVC.Add("token", "<Slack Auth Token>")
 $NVC.Add("channels", "<Channel ID>")
@@ -201,9 +200,9 @@ $newWebClient.Headers.Add("Content-Type", "application/x-www-form-urlencoded")
 
 # Build parameters as query string
 $newNVC = New-Object System.Collections.Specialized.NameValueCollection
-$newNVC.Add("content",$logContent)
-$newNVC.Add("filetype","log")
-$newNVC.Add("title","SpecrunLog")
+$newNVC.Add("content", $logContent)
+$newNVC.Add("filetype", "log")
+$newNVC.Add("title", "SpecrunLog")
 $newNVC.Add("initial_comment", "SpecrunLog")
 $NVC.Add("token", "<Slack Auth Token>")
 $NVC.Add("channels", "<Channel ID>")
